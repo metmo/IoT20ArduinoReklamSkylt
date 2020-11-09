@@ -1,4 +1,3 @@
-
 #include <LiquidCrystal.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_GrayOLED.h>
@@ -24,9 +23,6 @@ void setup() {
 }
 
 void loop() {
-  
-  Serial.println(customers[0].messages[0].text);
-  Serial.println(customers[0].messages[1].text);
-  Serial.println(customers[0].messages[2].text);
-
+  Serial.println(chooseCustomer(customers,NUMBER_OF_CUSTOMERS));
+delay(1);
 }

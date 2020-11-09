@@ -2,7 +2,6 @@
 #include <Arduino.h>
 
 
-
 #define TIME_BETWEEN_SWITCH 20 // Second between switch
 #define NUMBER_OF_CUSTOMERS 10
 #define MESSAGE_LENGTH 16
@@ -34,3 +33,4 @@ struct customerStruct {
 };
 
 void populateCustomerStruct(customerStruct customers[], int numberOfCustomers );
+int chooseCustomer(customerStruct customers[], int numberOfCustomers);
