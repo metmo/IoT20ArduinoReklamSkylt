@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 #include <LiquidCrystal.h>
 
 #include <Adafruit_GFX.h>
@@ -12,8 +10,6 @@
 #include <splash.h>
 
 #include <stdlib.h>
-
->>>>>>> Stashed changes
 void setup() {
   // put your setup code here, to run once:
 
