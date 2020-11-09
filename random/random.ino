@@ -39,7 +39,7 @@ void setup()
 {
   Serial.begin(9600);
 
-  randomSeed(666);
+  randomSeed(analogRead(0));
   // call the print_message function every 20000 millis (20 second)
   timer.every(5000, print_message);
 }
