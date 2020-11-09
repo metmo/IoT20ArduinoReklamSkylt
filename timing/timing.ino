@@ -15,12 +15,19 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 
 //*****************************************************************/
+<<<<<<< Updated upstream
+=======
+#include <arduino-timer.h>
+auto timer = timer_create_default(); // create a timer with default settings
+
+>>>>>>> Stashed changes
 
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
 #include <arduino-timer.h>
 
+<<<<<<< Updated upstream
 auto timer = timer_create_default(); // create a timer with default settings
 
 int customers = 3;
@@ -47,6 +54,20 @@ bool print_message(void *)
   for (int i = 0 ; i < customers; i++)
   {
     Serial.print("print_message: Called at: ");
+=======
+char pajReklam[][40] = {"Köp paj hos Farmor Anka","Skynda innan Mårten ätit alla pajer"};
+char svartByggeReklam[][40] = {"Låt Petter bygga åt dig","Bygga svart? Ring Petter"};
+  
+
+char customers[][100] = {pajReklam, svartByggeReklam};
+
+bool print_message(void *)
+{
+  for (int i = 0 ; i < customers[random(0,2)]; i++)
+  {
+    
+    Serial.print("print_message: %s  :Called at: ");
+>>>>>>> Stashed changes
     Serial.println(millis());
     return true; // repeat? true
   }
@@ -66,6 +87,11 @@ void setup() {
 //*****************************************************************/
 //                           LOOP CRAP
 //*****************************************************************/
+<<<<<<< Updated upstream
 void loop() {
+=======
+void loop() 
+{
+>>>>>>> Stashed changes
   timer.tick(); // tick the timer
 }
