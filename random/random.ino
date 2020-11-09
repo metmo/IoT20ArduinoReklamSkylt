@@ -1,13 +1,17 @@
 //RANDOM
 #include <arduino-timer.h>
+#include <string.h>
 auto timer = timer_create_default(); // create a timer with default settings
 long randomNumber;
-randomSeed(1999);
+
+//randomSeed(1999);
 char harrysBilar()
 {
   char kopBilReklam[][40] = {"Köp bil hos Harry","Hederlige Harrys Bilar","En god bilaffär (för Harry!)"}; 
-  int randomNUm = random(0,3);
-  return Serial.print(randomNUm);
+  char bufferplace[50];
+  //sprintf(bufferplace, "%d", kopBilReklam[random(0,3)]);
+  strcpy(bufferplace,kopBilReklam[random(0,3)]);
+//  Serial.print("%s\n",bufferplace);
 }
 
 void FarmorAnkasPajerAB()
@@ -20,7 +24,9 @@ void SvartePettersSvartbyggen()
   char svartByggeReklam[][40] = {"Låt Petter bygga åt dig","Bygga svart? Ring Petter"};
 }
 
-bool print_message(void *) {
+bool print_message(void *) 
+{
+  harrysBilar();
   Serial.print("print_message: Called at: ");
   Serial.println(millis());
   return true; // repeat? true
@@ -28,7 +34,8 @@ bool print_message(void *) {
 //*****************************************************************/
 //                      SETUP INITIALIZATION
 //*****************************************************************/
-void setup() {
+void setup() 
+{
   Serial.begin(9600);
 
   randomSeed(42);
@@ -38,7 +45,8 @@ void setup() {
 //*****************************************************************/
 //                           LOOP CRAP
 //*****************************************************************/
-void loop() {
+void loop() 
+{
   randomNumber = random(2,5);
   timer.tick(); // tick the timer
   //Serial.print("The Random Num is = ");

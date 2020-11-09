@@ -23,11 +23,33 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 auto timer = timer_create_default(); // create a timer with default settings
 
+int customers = 3;
 
-bool print_message(void *) {
-  Serial.print("print_message: Called at: ");
-  Serial.println(millis());
-  return true; // repeat? true
+char harrysBilar()
+{
+  char kopBilReklam[][40] = {"Köp bil hos Harry", "Hederlige Harrys Bilar", "En god bilaffär (för Harry!)"};
+  int randomNUm = random(0, 3);
+  return Serial.print(randomNUm);
+}
+
+void FarmorAnkasPajerAB()
+{
+  char pajReklam[][40] = {"Köp paj hos Farmor Anka", "Skynda innan Mårten ätit alla pajer"};
+}
+
+void SvartePettersSvartbyggen()
+{
+  char svartByggeReklam[][40] = {"Låt Petter bygga åt dig", "Bygga svart? Ring Petter"};
+}
+
+bool print_message(void *)
+{
+  for (int i = 0 ; i < customers; i++)
+  {
+    Serial.print("print_message: Called at: ");
+    Serial.println(millis());
+    return true; // repeat? true
+  }
 }
 //*****************************************************************/
 //                      SETUP INITIALIZATION
@@ -35,8 +57,11 @@ bool print_message(void *) {
 void setup() {
   Serial.begin(9600);
 
+
   // call the print_message function every 20000 millis (20 second)
   timer.every(20000, print_message);
+
+
 }
 //*****************************************************************/
 //                           LOOP CRAP
