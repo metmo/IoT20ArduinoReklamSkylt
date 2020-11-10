@@ -2,54 +2,6 @@
 #include <Arduino.h>
 #include "customer.h"
 
-<<<<<<< HEAD
-
-void populateCustomerStruct(customerStruct customers[], int numberOfCustomers ) {
-
-  customers[0].customerCost = 1000;
-
-  customers[1].customerCost = 2000;
-  customers[2].customerCost = 500;
-  customers[3].customerCost = 20000;
-  customers[4].customerCost = 3000;
-  customers[5].customerCost = 5000;
-  customers[6].customerCost = 7000;
-  customers[7].customerCost = 3000;
-  customers[8].customerCost = 5000;
-  customers[9].customerCost = 7000;
-
-
-  customers[0].numberOfMessages = 2;
-  customers[0].switchMethod = SWITCH_RANDOM;
-
-  strcpy(customers[0].messages[0].text, "Message 1");
-  customers[0].messages[0].textAttributes = SCROLL_ATTR;
-
-  strcpy(customers[0].messages[1].text, "Message 2");
-  customers[0].messages[1].textAttributes = STATIC_ATTR;
-
-  strcpy(customers[0].messages[2].text, "Message 3");
-  customers[0].messages[2].textAttributes = BLINK_ATTR;
-
-  return;
-}
-
-int chooseCustomer(customerStruct customers[], int numberOfCustomers) {
-  long int totalSum = 0;
-  for (int i = 0; i < numberOfCustomers; i++) {
-    totalSum += customers[i].customerCost;
-  }
-  long int randomNumber = random(0, totalSum);
-  totalSum = 0;
-  for (int i = 0; i < numberOfCustomers; i++) {
-    totalSum += customers[i].customerCost;
-    if (randomNumber <= totalSum) {
-      return i;
-    }
-  }
-  return 0;
-}
-=======
 void populateCustomerStruct(customerStruct customers[], int numberOfCustomers) {
 
     customers[0].customerCost = 1000;
@@ -65,7 +17,7 @@ void populateCustomerStruct(customerStruct customers[], int numberOfCustomers) {
     customers[9].customerCost = 7000;
 
 
-    customers[0].numberOfMessages = 3;
+    customers[0].numberOfMessages = 2;
     customers[0].switchMethod = SWITCH_RANDOM;
 
     strcpy(customers[0].messages[0].text, "Sätt upp din reklam hos oss");
@@ -77,60 +29,60 @@ void populateCustomerStruct(customerStruct customers[], int numberOfCustomers) {
     strcpy(customers[0].messages[2].text, "IOT Reklambyrån");
     customers[0].messages[2].textAttributes = BLINK_ATTR;
 
+    
 
-    customers[1].numberOfMessages = 3;
+    customers[1].numberOfMessages = 2;
     customers[1].switchMethod = SWITCH_RANDOM;
 
-    strcpy(customers[1].messages[0].text, "kund 1");
+    strcpy(customers[1].messages[0].text, "kund 1 m1");
     customers[1].messages[0].textAttributes = SCROLL_ATTR;
 
-    strcpy(customers[1].messages[1].text, "kund");
+    strcpy(customers[1].messages[1].text, "kund 1 m2");
     customers[1].messages[1].textAttributes = STATIC_ATTR;
 
-    strcpy(customers[0].messages[2].text, "kund");
+    strcpy(customers[0].messages[2].text, "kund 1 m3");
     customers[1].messages[2].textAttributes = BLINK_ATTR;
 
 
 
-
-    customers[2].numberOfMessages = 3;
+    customers[2].numberOfMessages = 2;
     customers[2].switchMethod = SWITCH_RANDOM;
 
-    strcpy(customers[2].messages[0].text, "kund");
+    strcpy(customers[2].messages[0].text, "kund 2 m1");
     customers[2].messages[0].textAttributes = SCROLL_ATTR;
 
-    strcpy(customers[2].messages[1].text, "kund");
+    strcpy(customers[2].messages[1].text, "kund 2 m2");
     customers[2].messages[1].textAttributes = STATIC_ATTR;
 
-    strcpy(customers[2].messages[2].text, "kund");
+    strcpy(customers[2].messages[2].text, "kund 2 m3 ");
     customers[2].messages[2].textAttributes = BLINK_ATTR;
 
 
 
-    customers[3].numberOfMessages = 3;
-    customers[03.switchMethod = SWITCH_RANDOM;
+    customers[3].numberOfMessages = 2;
+    customers[3].switchMethod = SWITCH_RANDOM;
 
-    strcpy(customers[3].messages[0].text, "kund");
+    strcpy(customers[3].messages[0].text, "kund 3 m1");
     customers[3].messages[0].textAttributes = SCROLL_ATTR;
 
-    strcpy(customers[0].messages[1].text, "kund");
+    strcpy(customers[0].messages[1].text, "kund 3 m2");
     customers[3].messages[1].textAttributes = STATIC_ATTR;
 
-    strcpy(customers[0].messages[2].text, "kund");
+    strcpy(customers[0].messages[2].text, "kund 3 m3");
     customers[3].messages[2].textAttributes = BLINK_ATTR;
 
 
 
-    customers[4].numberOfMessages = 3;
+    customers[4].numberOfMessages = 2;
     customers[4].switchMethod = SWITCH_RANDOM;
 
-    strcpy(customers[4].messages[0].text, "kund");
+    strcpy(customers[4].messages[0].text, "kund 4 m1");
     customers[4].messages[0].textAttributes = SCROLL_ATTR;
 
-    strcpy(customers[4].messages[1].text, "kund");
+    strcpy(customers[4].messages[1].text, "kund 4 m2 ");
     customers[4].messages[1].textAttributes = STATIC_ATTR;
 
-    strcpy(customers[4].messages[2].text, "kund");
+    strcpy(customers[4].messages[2].text, "kund 4 m3");
     customers[4].messages[2].textAttributes = BLINK_ATTR;
 
 
@@ -152,4 +104,3 @@ int chooseCustomer(customerStruct customers[], int numberOfCustomers) {
     }
     return 0;
 }
->>>>>>> origin/master
