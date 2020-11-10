@@ -1,11 +1,9 @@
-#include <stdlib.h>
-#include <Arduino.h>
+#ifndef _inclcustomer
+#define _inclcustomer
 
 
-#define TIME_BETWEEN_SWITCH 20 // Second between switch
-#define NUMBER_OF_CUSTOMERS 5 //10
+
 #define MESSAGE_LENGTH 40
-
 
 enum SWITCH_METHOD {
   SWITCH_RANDOM,
@@ -32,5 +30,7 @@ struct customerStruct {
 
 };
 
-void populateCustomerStruct(customerStruct customers[], int numberOfCustomers );
-int chooseCustomer(customerStruct customers[], int numberOfCustomers);
+void populateCustomerStruct(customerStruct *customers, int numberOfCustomers );
+int chooseCustomer(customerStruct *customers, int numberOfCustomers);
+
+#endif

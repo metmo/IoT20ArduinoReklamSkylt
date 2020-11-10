@@ -1,13 +1,13 @@
 #include <stdlib.h>
 #include <Arduino.h>
-#include "display.h"
 #include "customer.h"
+#include "display.h"
 
 
 void displayCustomer(customerStruct customers[], int numberOfCustomers, int customerIndex, bool newCustomer) {
 
   if (newCustomer) {
-    switch (customer[customerIndex].switchMethod) {
+    switch (customers[customerIndex].switchMethod) {
       case SWITCH_RANDOM: {
 
           // Här ska message väljas random
@@ -32,5 +32,6 @@ void displayCustomer(customerStruct customers[], int numberOfCustomers, int cust
         }
     }
   }
+  newCustomer = 0;
   return;
 }

@@ -1,6 +1,6 @@
-#include <stdlib.h>
-#include <Arduino.h>
-#include "customer.h"
+#ifndef _incldisplay
+#define _incldisplay
 
+void displayCustomer(customerStruct *customer, int numberOfCustomers, int customerIndex, bool newCustomer);
 
-void displayCustomer(customerStruct customers[], int numberOfCustomers, int customerIndex);
+#endif
