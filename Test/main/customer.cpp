@@ -40,7 +40,7 @@ void populateCustomerStruct(customerStruct customers[], int numberOfCustomers) {
     strcpy(customers[1].messages[1].text, "kund 1 m2");
     customers[1].messages[1].textAttributes = STATIC_ATTR;
 
-    strcpy(customers[0].messages[2].text, "kund 1 m3");
+    strcpy(customers[1].messages[2].text, "kund 1 m3");
     customers[1].messages[2].textAttributes = BLINK_ATTR;
 
 
@@ -65,10 +65,10 @@ void populateCustomerStruct(customerStruct customers[], int numberOfCustomers) {
     strcpy(customers[3].messages[0].text, "kund 3 m1");
     customers[3].messages[0].textAttributes = SCROLL_ATTR;
 
-    strcpy(customers[0].messages[1].text, "kund 3 m2");
+    strcpy(customers[3].messages[1].text, "kund 3 m2");
     customers[3].messages[1].textAttributes = STATIC_ATTR;
 
-    strcpy(customers[0].messages[2].text, "kund 3 m3");
+    strcpy(customers[3].messages[2].text, "kund 3 m3");
     customers[3].messages[2].textAttributes = BLINK_ATTR;
 
 
@@ -84,6 +84,73 @@ void populateCustomerStruct(customerStruct customers[], int numberOfCustomers) {
 
     strcpy(customers[4].messages[2].text, "kund 4 m3");
     customers[4].messages[2].textAttributes = BLINK_ATTR;
+
+
+
+    strcpy(customers[5].messages[0].text, "Sätt upp din reklam hos oss");
+    customers[5].messages[0].textAttributes = SCROLL_ATTR;
+
+    strcpy(customers[5].messages[1].text, "Hela staden ser dig");
+    customers[5].messages[1].textAttributes = STATIC_ATTR;
+
+    strcpy(customers[5].messages[2].text, "IOT Reklambyrån");
+    customers[5].messages[2].textAttributes = BLINK_ATTR;
+
+
+
+    customers[6].numberOfMessages = 2;
+    customers[6].switchMethod = SWITCH_RANDOM;
+
+    strcpy(customers[6].messages[0].text, "kund 1 m1");
+    customers[6].messages[0].textAttributes = SCROLL_ATTR;
+
+    strcpy(customers[6].messages[1].text, "kund 1 m2");
+    customers[6].messages[1].textAttributes = STATIC_ATTR;
+
+    strcpy(customers[6].messages[2].text, "kund 1 m3");
+    customers[6].messages[2].textAttributes = BLINK_ATTR;
+
+
+
+    customers[7].numberOfMessages = 2;
+    customers[7].switchMethod = SWITCH_RANDOM;
+
+    strcpy(customers[7].messages[0].text, "kund 2 m1");
+    customers[7].messages[0].textAttributes = SCROLL_ATTR;
+
+    strcpy(customers[7].messages[1].text, "kund 2 m2");
+    customers[7].messages[1].textAttributes = STATIC_ATTR;
+
+    strcpy(customers[7].messages[2].text, "kund 2 m3 ");
+    customers[7].messages[2].textAttributes = BLINK_ATTR;
+
+
+
+    customers[8].numberOfMessages = 2;
+    customers[8].switchMethod = SWITCH_RANDOM;
+
+    strcpy(customers[8].messages[0].text, "kund 3 m1");
+    customers[8].messages[0].textAttributes = SCROLL_ATTR;
+
+    strcpy(customers[8].messages[1].text, "kund 3 m2");
+    customers[8].messages[1].textAttributes = STATIC_ATTR;
+
+    strcpy(customers[8].messages[2].text, "kund 3 m3");
+    customers[8].messages[2].textAttributes = BLINK_ATTR;
+
+
+
+    customers[9].numberOfMessages = 2;
+    customers[9].switchMethod = SWITCH_RANDOM;
+
+    strcpy(customers[9].messages[0].text, "kund 4 m1");
+    customers[9].messages[0].textAttributes = SCROLL_ATTR;
+
+    strcpy(customers[9].messages[1].text, "kund 4 m2 ");
+    customers[9].messages[1].textAttributes = STATIC_ATTR;
+
+    strcpy(customers[9].messages[2].text, "kund 4 m3");
+    customers[9].messages[2].textAttributes = BLINK_ATTR;
 
 
     return;

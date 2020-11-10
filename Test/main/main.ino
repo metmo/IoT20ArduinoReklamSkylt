@@ -13,42 +13,58 @@
 auto timer = timer_create_default(); // create a timer with default settings
 #include "customer.h"
 
+int previousRand;
 
 customerStruct customers[NUMBER_OF_CUSTOMERS];
 
-bool printaReklamen( void* )
+
+int nonConsRandom()
 {
-char buffer[40];
+  int newRand = random(0,2);
+  while (previousRand == newRand);
+  {
+    newRand = random(0,3);
+  }
+  previousRand = newRand;
+  return newRand;
+}
+
+bool printaReklamen( void* ,int newRandom)
+{
+  char buffer[40];
+  int currentCustomer = chooseCustomer(customers, NUMBER_OF_CUSTOMERS);
   
- 
-    
- // Serial.println(chooseCustomer(customers,NUMBER_OF_CUSTOMERS));
-  Serial.println(customers[chooseCustomer(customers,NUMBER_OF_CUSTOMERS)].messages[random(0,2)].text);
+  
+  
+  // Serial.println(chooseCustomer(customers,NUMBER_OF_CUSTOMERS));
+  Serial.println(customers[currentCustomer].messages[newRandom].text);
   return true;
 }
 
 //*****************************************************************/
 //                      SETUP INITIALIZATION
 //*****************************************************************/
-void setup() 
+void setup()
 {
 
   Serial.begin(9600);
-  
+
   populateCustomerStruct(customers, NUMBER_OF_CUSTOMERS);
 
-  
-  
+
+
   randomSeed(analogRead(0));
   // call the_message function every 5000 millis
-  timer.every(200, printaReklamen);
+  timer.every(5000, printaReklamen);
 }
 //*****************************************************************/
 //                           LOOP CRAP
 //*****************************************************************/
-void loop() 
+void loop()
 {
   timer.tick(); // tick the timer
+  int newRandom = nonConsRandom();
+  
   //Serial.println(chooseCustomer(customers,NUMBER_OF_CUSTOMERS));
-//delay(1);
+  //delay(1);
 }

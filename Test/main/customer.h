@@ -3,7 +3,7 @@
 
 
 #define TIME_BETWEEN_SWITCH 20 // Second between switch
-#define NUMBER_OF_CUSTOMERS 5 //10
+#define NUMBER_OF_CUSTOMERS 10 //10
 #define MESSAGE_LENGTH 40
 
 
