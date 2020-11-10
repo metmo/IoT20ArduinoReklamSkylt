@@ -2,36 +2,72 @@
 #include <Arduino.h>
 #include "customer.h"
 #include "display.h"
+#include "timer.h"
 
 
-void displayCustomer(customerStruct customers[], int numberOfCustomers, int customerIndex, bool newCustomer) {
+void showText(messageStruct message) {
 
-  if (newCustomer) {
+  switch (message.textAttributes) {
+    case SCROLL_ATTR: {
+        Serial.print("\nScrolling: ");
+        Serial.print(message.text);
+        break;
+      }
+    case STATIC_ATTR: {
+        Serial.print("\nStatic: ");
+        Serial.print(message.text);
+        break;
+      }
+    case BLINK_ATTR: {
+        Serial.print("\nBlinking: ");
+        Serial.print(message.text);
+        break;
+      }
+    case FLARE_ATTR: {
+        Serial.print("\nFlashy: ");
+        Serial.print(message.text);
+        break;
+      }
+  }
+}
+
+
+void displayCustomer(customerStruct customers[], int numberOfCustomers, int customerIndex) {
+
+
     switch (customers[customerIndex].switchMethod) {
+
       case SWITCH_RANDOM: {
-
-          // Här ska message väljas random
-
-
+          unsigned char rnd = random(0, customers[customerIndex].numberOfMessages);
+          showText(customers[customerIndex].messages[rnd]);
           break;
         }
+
       case SWITCH_ODD_EVEN_MINUTES: {
 
+#define MINUTE 1
 
-          // Här ska message väljas beroende på jämn/ojämn minut
-
-
+          if ((MINUTE % 2) == 0) {
+          showText(customers[customerIndex].messages[0]);
+          }
+          else {
+          showText(customers[customerIndex].messages[1]);
+          }
           break;
         }
+
       case SWITCH_DAY_NIGHT: {
 
-          //Här ska meddelande väljas beroende på klockslag 17-06;
+#define TIME 1800
 
-
+          if ((TIME > 1700 ) && ( TIME < 2200)) {
+          showText(customers[customerIndex].messages[0]);
+          }
+          else {
+          showText(customers[customerIndex].messages[1]);
+          }
           break;
         }
     }
-  }
-  newCustomer = 0;
   return;
 }

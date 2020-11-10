@@ -2,8 +2,10 @@
 #include <Arduino.h>
 #include "customer.h"
 #include "display.h"
+#include "timer.h"
 
 int timer = 0;
+int newCustomer = 0;
 
 void setupTimer(){
   TCCR0A=(1<<WGM01);    //Set the CTC mode   
@@ -18,4 +20,7 @@ void setupTimer(){
 
 ISR(TIMER0_COMPA_vect){    //This is the interrupt request
   timer++;
+  if(timer == 20000){
+    newCustomer = 1;
+  }
 }

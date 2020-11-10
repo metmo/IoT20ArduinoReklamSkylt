@@ -1,6 +1,7 @@
 #ifndef displayheader
 #define displayheader
 
-void displayCustomer(customerStruct *customer, int numberOfCustomers, int customerIndex, bool newCustomer);
+void showText(messageStruct message);
+void displayCustomer(customerStruct *customer, int numberOfCustomers, int customerIndex);
 
 #endif
