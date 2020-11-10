@@ -1,8 +1,25 @@
 #include <stdlib.h>
 #include <Arduino.h>
+#include <stdarg.h>
 #include "customer.h"
 #include "display.h"
 
+
+customerStruct addCustomer(SWITCH_METHOD switchMethod, short numberOfMessages, unsigned int customerCost, messageStruct messages[]) {
+ 
+  customerStruct customer;
+  customer.customerCost = customerCost;
+  customer.numberOfMessages = numberOfMessages;
+  customer.switchMethod = switchMethod;
+
+  for (int i = 0; i < numberOfMessages; i++) {
+    strcpy(customer.messages[i].text, messages[i].text);
+    customer.messages[i].textAttributes = messages[i].textAttributes;
+  }
+
+    
+  return customer;
+}
 
 
 void populateCustomerStruct(customerStruct customers[], int numberOfCustomers) {

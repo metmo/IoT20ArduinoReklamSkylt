@@ -32,6 +32,7 @@ struct customerStruct {
 };
 
 void populateCustomerStruct(customerStruct *customers, int numberOfCustomers );
+customerStruct addCustomer(SWITCH_METHOD switchMethod, short numberOfMessages, unsigned int customerCost, messageStruct messages[]);
 int chooseCustomer(customerStruct *customers, int numberOfCustomers);
 
 #endif
