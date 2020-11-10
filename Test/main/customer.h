@@ -25,7 +25,7 @@ struct messageStruct {
   enum TEXT_ATTRIBUTES textAttributes;
 };
 struct customerStruct {
-  unsigned short int customerCost = 0;
+  unsigned int customerCost = 0;
   short numberOfMessages = 0;
   messageStruct messages[3];
   enum SWITCH_METHOD switchMethod;

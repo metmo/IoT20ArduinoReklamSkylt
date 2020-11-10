@@ -1,17 +1,20 @@
-#include <LiquidCrystal.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_GrayOLED.h>
-#include <Adafruit_SPITFT.h>
-#include <Adafruit_SPITFT_Macros.h>
-#include <gfxfont.h>
-#include <Adafruit_SSD1306.h>
-#include <splash.h>
+//#include <LiquidCrystal.h>
+//#include <Adafruit_GFX.h>
+//#include <Adafruit_GrayOLED.h>
+//#include <Adafruit_SPITFT.h>
+//#include <Adafruit_SPITFT_Macros.h>
+//#include <gfxfont.h>
+//#include <Adafruit_SSD1306.h>
+//#include <splash.h>
+//#include <arduino-timer.h>
+
+
 #include <stdlib.h>
-#include <arduino-timer.h>
 #include <string.h>
 
 auto timer = timer_create_default(); // create a timer with default settings
 #include "customer.h"
+#include "display.h"
 
 
 customerStruct customers[NUMBER_OF_CUSTOMERS];
