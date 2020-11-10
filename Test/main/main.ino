@@ -18,6 +18,7 @@
 
 #include "customer.h"
 #include "display.h"
+#include "timer.h"
 
 void setup()
 {

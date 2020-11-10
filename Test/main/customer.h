@@ -1,9 +1,10 @@
-#ifndef _inclcustomer
-#define _inclcustomer
-
-
+#ifndef customerheader
+#define customerheader
 
 #define MESSAGE_LENGTH 40
+#define MAX_NUMBER_OF_MESSAGES 3
+#define INITIAL_CUSTOMER_COST 1000
+
 
 enum SWITCH_METHOD {
   SWITCH_RANDOM,
@@ -23,9 +24,9 @@ struct messageStruct {
   enum TEXT_ATTRIBUTES textAttributes;
 };
 struct customerStruct {
-  unsigned int customerCost = 0;
-  short numberOfMessages = 0;
-  messageStruct messages[3];
+  unsigned int customerCost = INITIAL_CUSTOMER_COST;
+  short numberOfMessages = MAX_NUMBER_OF_MESSAGES;
+  messageStruct messages[MAX_NUMBER_OF_MESSAGES];
   enum SWITCH_METHOD switchMethod;
 
 };
