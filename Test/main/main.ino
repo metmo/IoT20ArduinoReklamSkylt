@@ -8,9 +8,9 @@
 //#include <splash.h>
 //#include <arduino-timer.h>
 
-
-
 #define NUMBER_OF_CUSTOMERS 6 //10
+
+
 
 #include <stdlib.h>
 #include <Arduino.h>
@@ -20,6 +20,10 @@
 #include "display.h"
 #include "timer.h"
 
+int timer1 = 0;
+bool newCustomer = 0;
+int lastCustomerIndex = 0;
+customerStruct customers[NUMBER_OF_CUSTOMERS];
 
 void setup()
 {
@@ -27,11 +31,21 @@ void setup()
   delay(600);
 
   setupTimer();
-  
-  customerStruct customers[NUMBER_OF_CUSTOMERS];
   populateCustomerStruct(customers, NUMBER_OF_CUSTOMERS);
 
 }
 void loop()
 {
+
+  if (newCustomer) {
+    int customerIndex;
+    do {
+      customerIndex = chooseCustomer(customers, NUMBER_OF_CUSTOMERS);
+    } while (lastCustomerIndex == customerIndex);
+    lastCustomerIndex = customerIndex;
+    Serial.print("\n\nCustomer index:");
+    Serial.print(customerIndex);
+    displayCustomer(customers, customerIndex);
+    newCustomer = 0;
+  }
 }

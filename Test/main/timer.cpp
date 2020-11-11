@@ -16,8 +16,6 @@ void setupTimer(){
 }
 
 ISR(TIMER0_COMPA_vect){    //This is the interrupt request
-  timer++;
-  if(timer == 20000){
-    newCustomer = 1;
-  }
+  timer1++;
+  newCustomer = 1;
 }

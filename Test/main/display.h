@@ -2,6 +2,6 @@
 #define displayheader
 
 void showText(messageStruct message);
-void displayCustomer(customerStruct *customer, int numberOfCustomers, int customerIndex);
+void displayCustomer(customerStruct *customer, int customerIndex);
 
 #endif

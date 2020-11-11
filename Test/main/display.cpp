@@ -32,42 +32,44 @@ void showText(messageStruct message) {
 }
 
 
-void displayCustomer(customerStruct customers[], int numberOfCustomers, int customerIndex) {
+void displayCustomer(customerStruct customers[], int customerIndex) {
 
 
-    switch (customers[customerIndex].switchMethod) {
+  switch (customers[customerIndex].switchMethod) {
 
-      case SWITCH_RANDOM: {
-          unsigned char rnd = random(0, customers[customerIndex].numberOfMessages);
-          showText(customers[customerIndex].messages[rnd]);
-          break;
-        }
+    case SWITCH_RANDOM: {
+        Serial.print("\nRANDOM");
+        unsigned char rnd = random(0, customers[customerIndex].numberOfMessages);
+        showText(customers[customerIndex].messages[rnd]);
+        break;
+      }
 
-      case SWITCH_ODD_EVEN_MINUTES: {
+    case SWITCH_ODD_EVEN_MINUTES: {
+        Serial.print("\nODD/EVEN");
 
 #define MINUTE 1
 
-          if ((MINUTE % 2) == 0) {
+        if ((MINUTE % 2) == 0) {
           showText(customers[customerIndex].messages[0]);
-          }
-          else {
-          showText(customers[customerIndex].messages[1]);
-          }
-          break;
         }
-
-      case SWITCH_DAY_NIGHT: {
-
-#define TIME 1800
-
-          if ((TIME > 1700 ) && ( TIME < 2200)) {
-          showText(customers[customerIndex].messages[0]);
-          }
-          else {
+        else {
           showText(customers[customerIndex].messages[1]);
-          }
-          break;
         }
-    }
+        break;
+      }
+
+    case SWITCH_DAY_NIGHT: {
+        Serial.print("\nDAY/NIGHT");
+        showText(customers[customerIndex].messages[0]);
+        showText(customers[customerIndex].messages[1]);
+        break;
+      }
+    case SWITCH_BITMAP: {
+      Serial.print("\nBITMAP:");
+        showText(customers[customerIndex].messages[0]);
+        break;
+
+      }
+  }
   return;
 }

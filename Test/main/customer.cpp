@@ -44,11 +44,18 @@ void populateCustomerStruct(customerStruct customers[], int numberOfCustomers) {
   message[1].textAttributes = STATIC_ATTR;
   customers[2] = addCustomer(SWITCH_ODD_EVEN_MINUTES, 2, 1500, message);
 
+  
   strcpy(message[0].text, "Mysterier? Ring Långben");
-  message[0].textAttributes = STATIC_ATTR;
+  message[0].textAttributes = SCROLL_ATTR;
   strcpy(message[1].text, "Långben fixar biffen");
   message[1].textAttributes = STATIC_ATTR;
-  customers[3] = addCustomer(SWITCH_DAY_NIGHT, 2, 4000, message);
+  customers[3] = addCustomer(SWITCH_ODD_EVEN_MINUTES, 2, 4000, message);
+//
+//  strcpy(message[0].text, "Mysterier? Ring Långben");
+//  message[0].textAttributes = STATIC_ATTR;
+//  strcpy(message[1].text, "Långben fixar biffen");
+//  message[1].textAttributes = STATIC_ATTR;
+//  customers[3] = addCustomer(SWITCH_DAY_NIGHT, 2, 4000, message);
 
   strcpy(message[0].text, "Synas här? IOT:s Reklambyrå");
   message[0].textAttributes = STATIC_ATTR;

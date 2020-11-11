@@ -1,8 +1,8 @@
 #ifndef customerheader
 #define customerheader
 
-#define MESSAGE_LENGTH 40
-#define MAX_NUMBER_OF_MESSAGES 3
+#define MESSAGE_LENGTH 50
+#define MAX_NUMBER_OF_MESSAGES 2
 #define INITIAL_CUSTOMER_COST 1000
 
 
