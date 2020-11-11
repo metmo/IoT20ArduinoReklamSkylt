@@ -36,8 +36,6 @@ void showText(messageStruct message) {
 
 void displayCustomer(customerStruct customers[], int customerIndex) {
 
-Serial.println("displayCustomer");
-
   switch (customers[customerIndex].switchMethod) {
 
     case SWITCH_RANDOM: {

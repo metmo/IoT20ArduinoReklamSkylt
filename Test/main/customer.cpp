@@ -58,43 +58,41 @@ void populateCustomerStruct(customerStruct customers[], int numberOfCustomers) {
 
   messageStruct message[3];
 
-  Serial.println("Populating");
-
-  strcpy(message[0].text, "TEXT1");
+  strcpy(message[0].text, "Köp bil hos Harry");
   message[0].textAttributes = SCROLL_ATTR;
-  strcpy(message[1].text, "TEXT2");
+  strcpy(message[1].text, "En god bilaffär(för Harry!)");
   message[1].textAttributes = STATIC_ATTR;
-  strcpy(message[2].text, "TEXT3");
+  strcpy(message[2].text, "Hederlige Harrys Bilar");
   message[2].textAttributes = BLINK_ATTR;
   customers[0] = addCustomer(SWITCH_RANDOM, 2, 5000, message);
 
-  strcpy(message[0].text, "TEXT1");
+  strcpy(message[0].text,  "Köp paj hos Farmor Anka");
   message[0].textAttributes = SCROLL_ATTR;
-  strcpy(message[1].text, "TEXT2");
+  strcpy(message[1].text, "Skynda innan Mårten ätit allt");
   message[1].textAttributes = STATIC_ATTR;
   customers[1] = addCustomer(SWITCH_RANDOM, 1, 3000, message);
 
-  strcpy(message[0].text, "TEXT1");
+  strcpy(message[0].text, "Låt Petter Bygga åt dig");
   message[0].textAttributes = SCROLL_ATTR;
-  strcpy(message[1].text, "TEXT2");
+  strcpy(message[1].text, "Bygga svart? Ring Petter");
   message[1].textAttributes = STATIC_ATTR;
   customers[2] = addCustomer(SWITCH_ODD_EVEN_MINUTES, 1, 1500, message);
 
 
-  strcpy(message[0].text, "TEXT1");
+  strcpy(message[0].text,  "Mysterier? Ring Långben");
   message[0].textAttributes = SCROLL_ATTR;
-  strcpy(message[1].text, "TEXT2");
+  strcpy(message[1].text, "Långben fixar biffen");
   message[1].textAttributes = STATIC_ATTR;
   customers[3] = addCustomer(SWITCH_ODD_EVEN_MINUTES, 1, 4000, message);
 
 
-  strcpy(message[0].text, "TEXT1");
+  strcpy(message[0].text, "IOT-Reklambyå");
   message[0].textAttributes = STATIC_ATTR;
   customers[4] = addCustomer(SWITCH_BITMAP, 1, 1000, message);
 
-  strcpy(message[0].text, "TEXT1");
+  strcpy(message[0].text,  "T-Röd - för dig som tänkt klart");
   message[0].textAttributes = FLARE_ATTR;
-  strcpy(message[1].text, "TEXT2");
+  strcpy(message[1].text, "Claes Månsson - om flickan själv får välja");
   message[1].textAttributes = FLARE_ATTR;
   customers[5] = addCustomer(SWITCH_RANDOM, 2, 6000, message);
 

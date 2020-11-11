@@ -4,17 +4,35 @@
 #include "display.h"
 #include "timer.h"
 
-//void setupTimer(){
-//  TCCR0A=(1<<WGM01);    //Set the CTC mode   
-//  OCR0A=0xF9; //Value for ORC0A for 1ms 
-//  
-//  TIMSK0|=(1<<OCIE0A);   //Set the interrupt request
-//  sei(); //Enable interrupt
-//  
-//  TCCR0B|=(1<<CS01);    //Set the prescale 1/64 clock
-//  TCCR0B|=(1<<CS00);
-//}
-//
-//ISR(TIMER0_COMPA_vect){    //This is the interrupt request
-//  timer1++;
-//}
+int timer1_counter;
+int counter;
+
+void setupTimer() {
+
+
+
+
+
+  noInterrupts();           // disable all interrupts
+  TCCR1A = 0;
+  TCCR1B = 0;
+  TCNT1  = 0;
+
+ // timer1_counter = 34286;   // preload timer 65536-16MHz/256/2Hz
+
+  OCR1A = 62499;
+  TCNT1 = timer1_counter;   // preload timer
+  TCCR1B |= (1 << CS12);    // 256 prescaler
+ TIMSK1 |= (1 << TOIE1);   // enable timer overflow interrupt
+  interrupts();
+}
+
+ISR(TIMER1_OVF_vect) {   //This is the interrupt request
+
+  TCNT1 = timer1_counter;   // preload timer
+  counter++;;
+  if (counter >= 1) {
+    newCustomer = 1;
+    counter = 0;
+  }
+}
