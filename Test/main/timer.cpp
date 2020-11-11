@@ -4,9 +4,6 @@
 #include "display.h"
 #include "timer.h"
 
-int timer = 0;
-int newCustomer = 0;
-
 void setupTimer(){
   TCCR0A=(1<<WGM01);    //Set the CTC mode   
   OCR0A=0xF9; //Value for ORC0A for 1ms 
