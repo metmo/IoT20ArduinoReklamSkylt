@@ -3,11 +3,10 @@
 
 #define NUMBER_OF_CUSTOMERS 6
 
-
 #include <stdlib.h>
 #include <Arduino.h>
 #include <string.h>
-
+#include <TimeLib.h>
 #include "customer.h"
 #include "display.h"
 #include "timer.h"
@@ -15,15 +14,22 @@
 
 bool newCustomer = 1;
 int lastCustomerIndex = 0;
+time_t t = now();
 
 customerStruct customers[NUMBER_OF_CUSTOMERS];
 
 void setup()
 {
-  setupTimer();
   Serial.begin(9600);
+  setupTimer();
 
-  storeData();
+  setTime(16, 20, 30, 11, 1, 2020);
+  Serial.print("Time: ");
+  Serial.print(hour(t));
+  Serial.print(":");
+  Serial.print(minute(t));
+  Serial.print(":");
+  Serial.print(second(t));
 
   populateCustomerStruct(customers, NUMBER_OF_CUSTOMERS);
 }

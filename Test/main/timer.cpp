@@ -3,15 +3,12 @@
 #include "customer.h"
 #include "display.h"
 #include "timer.h"
+#include <Time.h>
 
 int timer1_counter;
 int counter;
 
 void setupTimer() {
-
-
-
-
 
   noInterrupts();           // disable all interrupts
   TCCR1A = 0;

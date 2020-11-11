@@ -39,37 +39,31 @@ void displayCustomer(customerStruct customers[], int customerIndex) {
   switch (customers[customerIndex].switchMethod) {
 
     case SWITCH_RANDOM: {
-        Serial.print("\nRANDOM");
+        Serial.print("\nRANDOM ");
         unsigned char rnd = random(0, customers[customerIndex].numberOfMessages);
+        Serial.print(rnd);
         showText(customers[customerIndex].messages[rnd]);
         break;
       }
 
     case SWITCH_ODD_EVEN_MINUTES: {
-        Serial.print("\nODD/EVEN");
+        Serial.print("\nODD/EVEN:");
 
-#define MINUTE 1
-
-        if ((MINUTE % 2) == 0) {
-          showText(customers[customerIndex].messages[0]);
-        }
-        else {
-          showText(customers[customerIndex].messages[1]);
-        }
-        break;
-      }
-
-    case SWITCH_DAY_NIGHT: {
-        Serial.print("\nDAY/NIGHT");
         showText(customers[customerIndex].messages[0]);
         showText(customers[customerIndex].messages[1]);
         break;
       }
+    case SWITCH_DAY_NIGHT: {
+        Serial.print("\nDAY/NIGHT:");
+        showText(customers[customerIndex].messages[0]);
+        showText(customers[customerIndex].messages[1]);
+
+        break;
+      }
     case SWITCH_BITMAP: {
-      Serial.print("\nBITMAP:");
+        Serial.print("\nBITMAP:");
         showText(customers[customerIndex].messages[0]);
         break;
-
       }
   }
   return;
