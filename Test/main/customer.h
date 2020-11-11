@@ -1,16 +1,16 @@
-#include <stdlib.h>
-#include <Arduino.h>
+#ifndef customerheader
+#define customerheader
 
-
-#define TIME_BETWEEN_SWITCH 20 // Second between switch
-#define NUMBER_OF_CUSTOMERS 10 //10
 #define MESSAGE_LENGTH 40
+#define MAX_NUMBER_OF_MESSAGES 3
+#define INITIAL_CUSTOMER_COST 1000
 
 
 enum SWITCH_METHOD {
   SWITCH_RANDOM,
   SWITCH_ODD_EVEN_MINUTES,
-  SWITCH_DAY_NIGHT
+  SWITCH_DAY_NIGHT,
+  SWITCH_BITMAP
 };
 
 enum TEXT_ATTRIBUTES {
@@ -25,12 +25,15 @@ struct messageStruct {
   enum TEXT_ATTRIBUTES textAttributes;
 };
 struct customerStruct {
-  unsigned short int customerCost = 0;
-  short numberOfMessages = 0;
-  messageStruct messages[3];
+  unsigned int customerCost = INITIAL_CUSTOMER_COST;
+  short numberOfMessages = MAX_NUMBER_OF_MESSAGES;
+  messageStruct messages[MAX_NUMBER_OF_MESSAGES];
   enum SWITCH_METHOD switchMethod;
 
 };
 
-void populateCustomerStruct(customerStruct customers[], int numberOfCustomers );
-int chooseCustomer(customerStruct customers[], int numberOfCustomers);
+void populateCustomerStruct(customerStruct *customers, int numberOfCustomers );
+customerStruct addCustomer(SWITCH_METHOD switchMethod, short numberOfMessages, unsigned int customerCost, messageStruct messages[]);
+int chooseCustomer(customerStruct *customers, int numberOfCustomers);
+
+#endif
