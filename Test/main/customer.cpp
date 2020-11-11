@@ -3,11 +3,44 @@
 #include <stdarg.h>
 #include "customer.h"
 #include "display.h"
+#include <avr/pgmspace.h>
+
+void storeData() {
+
+  const char line1[] PROGMEM = "Everyone lost a hero";
+  const char line2[] PROGMEM = "the day Harambe";
+  const char line3[] PROGMEM = "died.";
+  const char line4[] PROGMEM = "";
+  const char line5[] PROGMEM = "Some thought it was";
+  const char line6[] PROGMEM = "unfair.";
+  const char line7[] PROGMEM = "Others took action!";
+  const char line8[] PROGMEM = "In a far corner of";
+  const char line9[] PROGMEM = "the world a plan was";
+  const char line10[] PROGMEM = "hatched to enable...";
+
+  const char * const textData[] PROGMEM =
+  {
+    line1,
+    line2,
+    line3,
+    line4,
+    line5,
+    line6,
+    line7,
+    line8,
+    line9,
+    line10
+  };
+
+  return;
+}
+
 
 
 customerStruct addCustomer(SWITCH_METHOD switchMethod, short numberOfMessages, unsigned int customerCost, messageStruct messages[]) {
 
   customerStruct customer;
+
   customer.customerCost = customerCost;
   customer.numberOfMessages = numberOfMessages;
   customer.switchMethod = switchMethod;
@@ -22,48 +55,46 @@ customerStruct addCustomer(SWITCH_METHOD switchMethod, short numberOfMessages, u
 
 void populateCustomerStruct(customerStruct customers[], int numberOfCustomers) {
 
+
   messageStruct message[3];
 
-  strcpy(message[0].text, "Köp bil hos Harry");
+  Serial.println("Populating");
+
+  strcpy(message[0].text, "TEXT1");
   message[0].textAttributes = SCROLL_ATTR;
-  strcpy(message[1].text, "En god bilaffär(för Harry!)");
+  strcpy(message[1].text, "TEXT2");
   message[1].textAttributes = STATIC_ATTR;
-  strcpy(message[2].text, "Hederlige Harrys Bilar");
+  strcpy(message[2].text, "TEXT3");
   message[2].textAttributes = BLINK_ATTR;
-  customers[0] = addCustomer(SWITCH_RANDOM, 3, 5000, message);
+  customers[0] = addCustomer(SWITCH_RANDOM, 2, 5000, message);
 
-  strcpy(message[0].text, "Köp paj hos Farmor Anka");
+  strcpy(message[0].text, "TEXT1");
   message[0].textAttributes = SCROLL_ATTR;
-  strcpy(message[1].text, "Skynda innan Mårten ätit alla pajer");
+  strcpy(message[1].text, "TEXT2");
   message[1].textAttributes = STATIC_ATTR;
-  customers[1] = addCustomer(SWITCH_RANDOM, 2, 3000, message);
+  customers[1] = addCustomer(SWITCH_RANDOM, 1, 3000, message);
 
-  strcpy(message[0].text, "Låt Petter Bygga åt dig");
+  strcpy(message[0].text, "TEXT1");
   message[0].textAttributes = SCROLL_ATTR;
-  strcpy(message[1].text, "Bygga svart? Ring Petter");
+  strcpy(message[1].text, "TEXT2");
   message[1].textAttributes = STATIC_ATTR;
-  customers[2] = addCustomer(SWITCH_ODD_EVEN_MINUTES, 2, 1500, message);
+  customers[2] = addCustomer(SWITCH_ODD_EVEN_MINUTES, 1, 1500, message);
 
-  
-  strcpy(message[0].text, "Mysterier? Ring Långben");
+
+  strcpy(message[0].text, "TEXT1");
   message[0].textAttributes = SCROLL_ATTR;
-  strcpy(message[1].text, "Långben fixar biffen");
+  strcpy(message[1].text, "TEXT2");
   message[1].textAttributes = STATIC_ATTR;
-  customers[3] = addCustomer(SWITCH_ODD_EVEN_MINUTES, 2, 4000, message);
-//
-//  strcpy(message[0].text, "Mysterier? Ring Långben");
-//  message[0].textAttributes = STATIC_ATTR;
-//  strcpy(message[1].text, "Långben fixar biffen");
-//  message[1].textAttributes = STATIC_ATTR;
-//  customers[3] = addCustomer(SWITCH_DAY_NIGHT, 2, 4000, message);
+  customers[3] = addCustomer(SWITCH_ODD_EVEN_MINUTES, 1, 4000, message);
 
-  strcpy(message[0].text, "Synas här? IOT:s Reklambyrå");
+
+  strcpy(message[0].text, "TEXT1");
   message[0].textAttributes = STATIC_ATTR;
   customers[4] = addCustomer(SWITCH_BITMAP, 1, 1000, message);
 
-  strcpy(message[0].text, "T-Röd - för dig som tänkt klart");
+  strcpy(message[0].text, "TEXT1");
   message[0].textAttributes = FLARE_ATTR;
-  strcpy(message[1].text, "Claes Månsson - om flickan själv får välja");
+  strcpy(message[1].text, "TEXT2");
   message[1].textAttributes = FLARE_ATTR;
   customers[5] = addCustomer(SWITCH_RANDOM, 2, 6000, message);
 

@@ -3,6 +3,8 @@
 #include "customer.h"
 #include "display.h"
 #include "timer.h"
+#include <avr/pgmspace.h>
+
 
 
 void showText(messageStruct message) {
@@ -34,6 +36,7 @@ void showText(messageStruct message) {
 
 void displayCustomer(customerStruct customers[], int customerIndex) {
 
+Serial.println("displayCustomer");
 
   switch (customers[customerIndex].switchMethod) {
 
