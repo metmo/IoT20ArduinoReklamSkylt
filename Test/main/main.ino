@@ -9,16 +9,17 @@
 //#include <arduino-timer.h>
 
 
+
 #define NUMBER_OF_CUSTOMERS 6 //10
 
 #include <stdlib.h>
 #include <Arduino.h>
 #include <string.h>
 
-
 #include "customer.h"
 #include "display.h"
 #include "timer.h"
+
 
 void setup()
 {
@@ -33,6 +34,4 @@ void setup()
 }
 void loop()
 {
-
-
 }
