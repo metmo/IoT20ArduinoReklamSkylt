@@ -1,47 +1,44 @@
 #include <stdlib.h>
 #include <Arduino.h>
+#include <LiquidCrystal.h>
 #include "customer.h"
 #include "display.h"
 #include "timer.h"
 #include "lcd.h"
 #include <avr/pgmspace.h>
-#include <LiquidCrystal.h>
 
 extern LiquidCrystal lcd;
+extern enum TEXT_ATTRIBUTES activeAttr;
+extern char text[50];
 
-
-char* splitText(char message[]){
-  return message;
-}
 
 void showText(messageStruct message) {
-
+  
+   strcpy(text, message.text);
+  
   switch (message.textAttributes) {
     case SCROLL_ATTR: {
-        Serial.print("\nScrolling: ");
-        Serial.print(message.text);
-        lcd.setCursor(0,0);
-        lcdPrint(message.text);
-
+        activeAttr = SCROLL_ATTR;
+        lcd.clear();
+        lcdPrint(text);
         break;
       }
     case STATIC_ATTR: {
-        Serial.print("\nStatic: ");
-        Serial.print(message.text);
+        activeAttr = STATIC_ATTR;
         lcd.clear();
-        lcd.setCursor(0,0);
-        lcdPrint(message.text);
+        lcdPrint(text);
         break;
       }
     case BLINK_ATTR: {
-        Serial.print("\nBlinking: ");
+        activeAttr = BLINK_ATTR;
         lcd.clear();
-        Serial.print(message.text);
+        lcdPrint(text);
         break;
       }
     case FLARE_ATTR: {
-        Serial.print("\nFlashy: ");
-        Serial.print(message.text);
+        activeAttr = FLARE_ATTR;
+        lcd.clear();
+        lcdPrint(text);
         break;
       }
   }

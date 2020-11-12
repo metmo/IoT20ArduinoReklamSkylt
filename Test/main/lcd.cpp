@@ -87,9 +87,9 @@ void addChars() {
 //test
 
 void lcdPrint(const char message[]) {
-lcd.clear();
+  
 lcd.setCursor(0,0);
-  for (int i = 0; i < 50; i++) {
+  for (int i = 0; i < 40; i++) {
 
     switch (message[i]) {
       case char('å'): {

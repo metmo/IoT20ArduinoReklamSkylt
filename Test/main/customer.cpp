@@ -30,9 +30,11 @@ void populateCustomerStruct(customerStruct customers[], int numberOfCustomers) {
   messageStruct message[3];
 
   strcpy_P(message[0].text, (PGM_P)pgm_read_word(&(textData[0])));
-  message[0].textAttributes = SCROLL_ATTR;
+  //message[0].textAttributes = SCROLL_ATTR;
+    message[0].textAttributes = BLINK_ATTR;
   strcpy_P(message[1].text, (PGM_P)pgm_read_word(&(textData[1])));
-  message[1].textAttributes = STATIC_ATTR;
+ // message[1].textAttributes = STATIC_ATTR;
+    message[1].textAttributes = BLINK_ATTR;
   strcpy_P(message[2].text, (PGM_P)pgm_read_word(&(textData[2])));
   message[2].textAttributes = BLINK_ATTR;
   customers[0] = addCustomer(SWITCH_RANDOM, 2, 5000, message);

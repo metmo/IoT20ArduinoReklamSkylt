@@ -25,7 +25,12 @@
 LiquidCrystal lcd(lcdRSpin, lcdENpin, lcdD4pin, lcdD5pin, lcdD6pin, lcdD7pin);
 
 bool newCustomer = 1;
+bool blinkState = 1;
+enum TEXT_ATTRIBUTES activeAttr;
+enum TEXT_ATTRIBUTES doEvent;
+char text[50];
 int lastCustomerIndex = 0;
+
 time_t t = now();
 
 customerStruct customers[NUMBER_OF_CUSTOMERS];
@@ -61,10 +66,43 @@ void loop()
       customerIndex = chooseCustomer(customers, NUMBER_OF_CUSTOMERS);
     } while (lastCustomerIndex == customerIndex);
     lastCustomerIndex = customerIndex;
-    Serial.print("\n\nCustomer index:");
-    Serial.print(customerIndex);
+    //  Serial.print("\n\nCustomer index:");
+    //  Serial.print(customerIndex);
 
     displayCustomer(customers, customerIndex);
     newCustomer = 0;
+  }
+
+  switch (doEvent) {
+    case SCROLL_ATTR: {
+        lcd.scrollDisplayRight();
+        doEvent = NO_ATTR;
+        break;
+      }
+    case STATIC_ATTR: {
+
+        doEvent = NO_ATTR;
+        break;
+      }
+    case BLINK_ATTR: {
+        if (blinkState) {
+          Serial.println(text);
+          lcdPrint(text);
+        } else {
+          lcd.clear();
+        }
+        blinkState = !blinkState;
+        doEvent = NO_ATTR;
+        break;
+      }
+    case FLARE_ATTR: {
+        doEvent = NO_ATTR;
+        break;
+    }  case NO_ATTR: {
+        doEvent = NO_ATTR;
+        break;
+      }
+
+
   }
 }
