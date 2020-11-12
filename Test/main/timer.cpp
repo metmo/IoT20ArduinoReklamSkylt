@@ -3,7 +3,10 @@
 #include "customer.h"
 #include "display.h"
 #include "timer.h"
+#include "lcd.h"
 #include <Time.h>
+#include <avr/pgmspace.h>
+#include <LiquidCrystal.h>
 
 int timer1_counter;
 int counter;

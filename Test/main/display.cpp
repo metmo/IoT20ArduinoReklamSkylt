@@ -3,9 +3,11 @@
 #include "customer.h"
 #include "display.h"
 #include "timer.h"
+#include "lcd.h"
 #include <avr/pgmspace.h>
+#include <LiquidCrystal.h>
 
-
+extern LiquidCrystal lcd;
 
 void showText(messageStruct message) {
 
@@ -13,15 +15,22 @@ void showText(messageStruct message) {
     case SCROLL_ATTR: {
         Serial.print("\nScrolling: ");
         Serial.print(message.text);
+        lcd.setCursor(0,0);
+        lcd.print(message.text);
+
         break;
       }
     case STATIC_ATTR: {
         Serial.print("\nStatic: ");
         Serial.print(message.text);
+        lcd.clear();
+        lcd.setCursor(0,0);
+        lcd.print(message.text);
         break;
       }
     case BLINK_ATTR: {
         Serial.print("\nBlinking: ");
+        lcd.clear();
         Serial.print(message.text);
         break;
       }

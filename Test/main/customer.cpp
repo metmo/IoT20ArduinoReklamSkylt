@@ -4,6 +4,8 @@
 #include "customer.h"
 #include "display.h"
 #include <avr/pgmspace.h>
+#include <LiquidCrystal.h>
+#include "lcd.h"
 
 
 customerStruct addCustomer(SWITCH_METHOD switchMethod, short numberOfMessages, unsigned int customerCost, messageStruct messages[]) {
