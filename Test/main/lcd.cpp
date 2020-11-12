@@ -84,6 +84,8 @@ void addChars() {
   lcd.createChar(byte(5), a6);
 }
 
+//test
+
 void lcdPrint(const char message[],int length) {
 
   for (int i = 0; i < length; i++) {
