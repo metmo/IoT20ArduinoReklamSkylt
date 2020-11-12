@@ -86,9 +86,11 @@ void addChars() {
 
 //test
 
-void lcdPrint(const char message[],int length) {
+void lcdPrint(const char message[]) {
+lcd.clear();
+lcd.setCursor(0,0);
+  for (int i = 0; i < 50; i++) {
 
-  for (int i = 0; i < length; i++) {
     switch (message[i]) {
       case char('å'): {
           lcd.write(byte(0));
@@ -119,6 +121,10 @@ void lcdPrint(const char message[],int length) {
           break;
         }
       case '\xc3': {
+          break;
+        }
+        case '\n':{
+          lcd.setCursor(0,1);
           break;
         }
 

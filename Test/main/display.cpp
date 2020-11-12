@@ -9,6 +9,11 @@
 
 extern LiquidCrystal lcd;
 
+
+char* splitText(char message[]){
+  return message;
+}
+
 void showText(messageStruct message) {
 
   switch (message.textAttributes) {
@@ -16,7 +21,7 @@ void showText(messageStruct message) {
         Serial.print("\nScrolling: ");
         Serial.print(message.text);
         lcd.setCursor(0,0);
-        lcd.print(message.text);
+        lcdPrint(message.text);
 
         break;
       }
@@ -25,7 +30,7 @@ void showText(messageStruct message) {
         Serial.print(message.text);
         lcd.clear();
         lcd.setCursor(0,0);
-        lcd.print(message.text);
+        lcdPrint(message.text);
         break;
       }
     case BLINK_ATTR: {

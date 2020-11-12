@@ -61,11 +61,10 @@ void loop()
       customerIndex = chooseCustomer(customers, NUMBER_OF_CUSTOMERS);
     } while (lastCustomerIndex == customerIndex);
     lastCustomerIndex = customerIndex;
- //   Serial.print("\n\nCustomer index:");
- //   Serial.print(customerIndex);
+    Serial.print("\n\nCustomer index:");
+    Serial.print(customerIndex);
 
-    lcdPrint("MARCUS ÖÄÅöäå");
-    // displayCustomer(customers, customerIndex);
+    displayCustomer(customers, customerIndex);
     newCustomer = 0;
   }
 }
