@@ -52,11 +52,13 @@ void setup()
   Serial.print(second(t));
 
   lcd.setCursor(2, 0);
-  lcd.print("MVA");
+  lcd.print("MVA"); // Marcus Vincent Andreas Commercial
   lcd.setCursor(2, 1);
   lcd.print("Commercial");
+  delay(1000);
 
   populateCustomerStruct(customers, NUMBER_OF_CUSTOMERS);
+  customers[0].customerCost = 1500;
 }
 void loop()
 {
