@@ -1,3 +1,4 @@
+
 #ifndef customerheader
 #define customerheader
 
@@ -37,6 +38,7 @@
 enum SWITCH_METHOD {
   SWITCH_RANDOM,
   SWITCH_ODD_EVEN_MINUTES,
+
   SWITCH_DAY_NIGHT,
   SWITCH_BITMAP
 };
@@ -47,6 +49,7 @@ enum TEXT_ATTRIBUTES {
   BLINK_ATTR,
   FLARE_ATTR,
   NO_ATTR
+
 };
 
 struct messageStruct {
@@ -58,7 +61,6 @@ struct customerStruct {
   unsigned long int customerCost;
   short numberOfMessages = MAX_NUMBER_OF_MESSAGES;
   messageStruct messages[MAX_NUMBER_OF_MESSAGES];
-
 
 };
 

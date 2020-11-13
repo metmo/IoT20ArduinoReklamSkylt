@@ -1,6 +1,3 @@
-
-
-
 #define NUMBER_OF_CUSTOMERS 6
 
 #include <stdlib.h>

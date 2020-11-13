@@ -83,4 +83,5 @@ int chooseCustomer(customerStruct customers[], int numberOfCustomers) {
     }
   }
   return 0;
+
 }
