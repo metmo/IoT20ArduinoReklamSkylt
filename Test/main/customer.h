@@ -1,12 +1,12 @@
 #ifndef customerheader
 #define customerheader
 
-#define MESSAGE_LENGTH 50
+#define MESSAGE_LENGTH 40
 #define MAX_NUMBER_OF_MESSAGES 3
 
   const char line0[] PROGMEM = "Köp bil\nhos Harry";
   const char line1[] PROGMEM = "En god bilaffär\n(för Harry!)";
-  const char line2[] PROGMEM = "Hederlige Harrys Bilar";
+  const char line2[] PROGMEM = "Hederlige harrys bilar";
   const char line3[] PROGMEM = "Köp paj hos Farmor Anka";
   const char line4[] PROGMEM = "Skynda innan\nMårten ätit allt";
   const char line5[] PROGMEM = "Låt Petter\nBygga åt dig";
@@ -62,7 +62,6 @@ struct customerStruct {
 
 };
 
-//void storeData();
 void populateCustomerStruct(customerStruct customers[], int numberOfCustomers );
 customerStruct addCustomer(SWITCH_METHOD switchMethod, short numberOfMessages, unsigned int customerCost, messageStruct messages[]);
 int chooseCustomer(customerStruct customers[], int numberOfCustomers);

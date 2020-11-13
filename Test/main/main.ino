@@ -10,7 +10,6 @@
 #include "customer.h"
 #include "display.h"
 #include "timer.h"
-
 #include <avr/pgmspace.h>
 #include <LiquidCrystal.h>
 #include "lcd.h"
@@ -29,48 +28,41 @@ bool blinkState = 1;
 enum TEXT_ATTRIBUTES activeAttr;
 enum TEXT_ATTRIBUTES doEvent;
 char text[50];
-int lastCustomerIndex = 0;
 
-time_t t = now();
+time_t t;
 
 customerStruct customers[NUMBER_OF_CUSTOMERS];
 
 void setup()
 {
+  setTime(17, 20, 30, 11, 1, 2020);
+  randomSeed(analogRead(A0));
   Serial.begin(9600);
 
   lcd.begin(16, 2);
   addChars();
   setupTimer();
 
-  setTime(16, 20, 30, 11, 1, 2020);
-  Serial.print("Time: ");
-  Serial.print(hour(t));
-  Serial.print(":");
-  Serial.print(minute(t));
-  Serial.print(":");
-  Serial.print(second(t));
+
 
   lcd.setCursor(2, 0);
-  lcd.print("MVA"); // Marcus Vincent Andreas Commercial
+ // lcd.print("MVA"); // Marcus Vincent Andreas Commercial
   lcd.setCursor(2, 1);
   lcd.print("Commercial");
   delay(1000);
 
   populateCustomerStruct(customers, NUMBER_OF_CUSTOMERS);
-  customers[0].customerCost = 1500;
+
 }
+int lastCustomerIndex ;
 void loop()
 {
+  int customerIndex;
   if (newCustomer) {
-    int customerIndex;
     do {
       customerIndex = chooseCustomer(customers, NUMBER_OF_CUSTOMERS);
     } while (lastCustomerIndex == customerIndex);
     lastCustomerIndex = customerIndex;
-    //  Serial.print("\n\nCustomer index:");
-    //  Serial.print(customerIndex);
-
     displayCustomer(customers, customerIndex);
     newCustomer = 0;
   }
@@ -82,7 +74,6 @@ void loop()
         break;
       }
     case STATIC_ATTR: {
-
         doEvent = NO_ATTR;
         break;
       }
@@ -90,21 +81,20 @@ void loop()
         if (blinkState) {
           Serial.println(text);
           lcdPrint(text);
+          blinkState = 0;
         } else {
           lcd.clear();
         }
-        blinkState = !blinkState;
         doEvent = NO_ATTR;
         break;
       }
     case FLARE_ATTR: {
         doEvent = NO_ATTR;
+
         break;
     }  case NO_ATTR: {
         doEvent = NO_ATTR;
         break;
       }
-
-
   }
 }

@@ -11,10 +11,11 @@
 int timer0_lastMillis;
 int timer1_counter;
 int counter;
+extern time_t t;
 
 void setupTimer() {
 
-  noInterrupts();           // disable all interrupts
+  noInterrupts();
 
   TIMSK0 |= (1 << OCIE0A);
 
@@ -22,14 +23,14 @@ void setupTimer() {
   TCCR1B = 0;
   TCNT1  = 0;
   OCR1A = 62499;
-  TCNT1 = timer1_counter;   // preload timer
+  // TCNT1 = timer1_counter;   // preload timer
   TCCR1B |= (1 << CS12);    // 256 prescaler
   TIMSK1 |= (1 << TOIE1);   // enable timer overflow interrupt
 
   interrupts();
 }
 
-ISR(TIMER0_COMPA_vect) {
+ISR(TIMER0_COMPA_vect) {  // Timer0 Compare
   switch (activeAttr) {
     case SCROLL_ATTR: {
         int currentMillis = millis();
@@ -59,11 +60,10 @@ ISR(TIMER0_COMPA_vect) {
   }
 
 }
-ISR(TIMER1_OVF_vect) {   //This is the interrupt request
-
-  TCNT1 = timer1_counter;   // preload timer
+ISR(TIMER1_OVF_vect) {  // Timer1 Interrupt
+  // TCNT1 = timer1_counter;
   counter++;;
-  if (counter >= 4) {
+  if (counter >= 20) {
     newCustomer = 1;
     counter = 0;
   }
