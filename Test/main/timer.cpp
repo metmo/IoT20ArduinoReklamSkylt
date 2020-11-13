@@ -3,24 +3,68 @@
 #include "customer.h"
 #include "display.h"
 #include "timer.h"
+#include "lcd.h"
+#include <Time.h>
+#include <avr/pgmspace.h>
+#include <LiquidCrystal.h>
 
-int timer = 0;
-int newCustomer = 0;
+int timer0_lastMillis;
+int timer1_counter;
+int counter;
+extern time_t t;
 
-void setupTimer(){
-  TCCR0A=(1<<WGM01);    //Set the CTC mode   
-  OCR0A=0xF9; //Value for ORC0A for 1ms 
-  
-  TIMSK0|=(1<<OCIE0A);   //Set the interrupt request
-  sei(); //Enable interrupt
-  
-  TCCR0B|=(1<<CS01);    //Set the prescale 1/64 clock
-  TCCR0B|=(1<<CS00);
+void setupTimer() {
+
+  noInterrupts();
+
+  TIMSK0 |= (1 << OCIE0A);
+
+  TCCR1A = 0;
+  TCCR1B = 0;
+  TCNT1  = 0;
+  OCR1A = 62499;
+  // TCNT1 = timer1_counter;   // preload timer
+  TCCR1B |= (1 << CS12);    // 256 prescaler
+  TIMSK1 |= (1 << TOIE1);   // enable timer overflow interrupt
+
+  interrupts();
 }
 
-ISR(TIMER0_COMPA_vect){    //This is the interrupt request
-  timer++;
-  if(timer == 20000){
+ISR(TIMER0_COMPA_vect) {  // Timer0 Compare
+  switch (activeAttr) {
+    case SCROLL_ATTR: {
+        int currentMillis = millis();
+        if (currentMillis - timer0_lastMillis >= 300) {
+          timer0_lastMillis = currentMillis;
+          doEvent = SCROLL_ATTR;
+        }
+        break;
+      }
+    case STATIC_ATTR: {
+        doEvent = STATIC_ATTR;
+        break;
+      }
+    case BLINK_ATTR: {
+        int currentMillis = millis();
+        if (currentMillis - timer0_lastMillis >= 500) {
+          timer0_lastMillis = currentMillis;
+          doEvent = BLINK_ATTR;
+        }
+        break;
+
+      case FLARE_ATTR: {
+          doEvent = FLARE_ATTR;
+          break;
+        }
+      }
+  }
+
+}
+ISR(TIMER1_OVF_vect) {  // Timer1 Interrupt
+  // TCNT1 = timer1_counter;
+  counter++;;
+  if (counter >= 20) {
     newCustomer = 1;
+    counter = 0;
   }
 }

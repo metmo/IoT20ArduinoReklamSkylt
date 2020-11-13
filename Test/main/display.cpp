@@ -1,73 +1,116 @@
 #include <stdlib.h>
 #include <Arduino.h>
+#include <string.h>
+#include <TimeLib.h>
 #include "customer.h"
 #include "display.h"
 #include "timer.h"
+#include <avr/pgmspace.h>
+#include <LiquidCrystal.h>
+#include "lcd.h"
+
+extern LiquidCrystal lcd;
+extern enum TEXT_ATTRIBUTES activeAttr;
+extern char text[50];
+extern time_t t;
 
 
 void showText(messageStruct message) {
 
+  strcpy(text, message.text);
+
   switch (message.textAttributes) {
     case SCROLL_ATTR: {
-        Serial.print("\nScrolling: ");
-        Serial.print(message.text);
+        activeAttr = SCROLL_ATTR;
+        lcd.clear();
+        lcdPrint(text);
         break;
       }
     case STATIC_ATTR: {
-        Serial.print("\nStatic: ");
-        Serial.print(message.text);
+        activeAttr = STATIC_ATTR;
+        lcd.clear();
+        lcdPrint(text);
         break;
       }
     case BLINK_ATTR: {
-        Serial.print("\nBlinking: ");
-        Serial.print(message.text);
+        activeAttr = BLINK_ATTR;
+        lcd.clear();
+        lcdPrint(text);
         break;
       }
     case FLARE_ATTR: {
-        Serial.print("\nFlashy: ");
-        Serial.print(message.text);
+        activeAttr = FLARE_ATTR;
+        lcd.clear();
+        lcdPrint(text);
         break;
       }
   }
 }
 
 
-void displayCustomer(customerStruct customers[], int numberOfCustomers, int customerIndex) {
+void displayCustomer(customerStruct customers[], int customerIndex) {
+  Serial.print("\nCustomer id: ");
+  Serial.print(customerIndex);
 
+  switch (customers[customerIndex].switchMethod) {
 
-    switch (customers[customerIndex].switchMethod) {
+    case SWITCH_RANDOM: {
+        Serial.print("\nRANDOM ");
+        int rnd = random(0, (customers[customerIndex].numberOfMessages + 1));
+        Serial.print(rnd);
+        
+        showText(customers[customerIndex].messages[rnd]);
+        Serial.print(customers[customerIndex].messages[rnd].text);
+        break;
+      }
 
-      case SWITCH_RANDOM: {
-          unsigned char rnd = random(0, customers[customerIndex].numberOfMessages);
-          showText(customers[customerIndex].messages[rnd]);
-          break;
-        }
-
-      case SWITCH_ODD_EVEN_MINUTES: {
-
-#define MINUTE 1
-
-          if ((MINUTE % 2) == 0) {
+    case SWITCH_ODD_EVEN_MINUTES: {
+        Serial.print("\nODD/EVEN:");
+        if (minute(t) % 2 == 0) {
           showText(customers[customerIndex].messages[0]);
-          }
-          else {
+
+          Serial.print(customers[customerIndex].messages[0].text);
+        } else {
           showText(customers[customerIndex].messages[1]);
-          }
-          break;
+
+          Serial.print(customers[customerIndex].messages[1].text);
         }
+        break;
+      }
+    case SWITCH_DAY_NIGHT: {
 
-      case SWITCH_DAY_NIGHT: {
+      
+        Serial.print(F("fiohfoirhfofoifhfoihfoirehoihfoiewhfoiehfoiehfoiehfoiehfoihfwoihfeoifhoifhweoihfeoifheoifhewoihfwoihf"));
+        
+   //     Serial.print("fiohfoirhfofoifhfoihfoirehoihfoiewhfoiehfoiehfoiehfoiehfoihfwoihfeoifhoifhweoihfeoifheoifhewoihfwoihf");
 
-#define TIME 1800
 
-          if ((TIME > 1700 ) && ( TIME < 2200)) {
+        
+//        Serial.print("Time: ");
+//        Serial.print(hour(t));
+//        Serial.print(":");
+//        Serial.print(minute(t));
+//        Serial.print(":");
+//        Serial.print(second(t));
+
+        if (hour(t) >= 17 | hour(t) < 6) {
+       //   Serial.print("\nNIGHT:");
           showText(customers[customerIndex].messages[0]);
-          }
-          else {
-          showText(customers[customerIndex].messages[1]);
-          }
-          break;
+      //    Serial.println(customers[customerIndex].messages[0].text);
         }
-    }
+        else if (hour(t) > 17 | hour(t) >= 6) {
+       //   Serial.print("\nDAY:");
+          showText(customers[customerIndex].messages[1]);
+       //   Serial.println(customers[customerIndex].messages[1].text);
+        }
+        break;
+      }
+    case SWITCH_BITMAP: {
+    //    Serial.print("\nBITMAP:");
+        showText(customers[customerIndex].messages[0]);
+    //    Serial.println(customers[customerIndex].messages[0].text);
+        break;
+      }
+  }
   return;
 }
