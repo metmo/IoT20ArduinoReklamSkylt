@@ -14,7 +14,7 @@ void eventCheck() {
     case BLINK_ATTR: {
         if (blinkState) {
           lcd.clear();
-          lcdPrint(text);
+          lcdPrint((*messagePtr).text);
         } else {
           lcd.clear();
         }
@@ -23,12 +23,12 @@ void eventCheck() {
       }
     case FLARE_ATTR: {
 
-      // Do Flare event, set global variables etc
-      // Switch even to Scroll or other.
-      activeAttr = SCROLL_ATTR;
-      doEvent = SCROLL_ATTR;
-      
-    //    doEvent = NO_ATTR;
+        // Do Flare event, set global variables etc
+        // Switch even to Scroll or other.
+        activeAttr = SCROLL_ATTR;
+        doEvent = SCROLL_ATTR;
+
+        //    doEvent = NO_ATTR;
         break;
 
     }  case NO_ATTR: {
@@ -39,11 +39,12 @@ void eventCheck() {
 
 
 void showText(messageStruct message) {
-  strcpy(text, message.text);
+  
+  messagePtr = &message;
   lcd.clear();
   activeAttr = message.textAttributes;
   doEvent = message.textAttributes;
-  lcdPrint(text);
+  lcdPrint((*messagePtr).text);
 }
 
 

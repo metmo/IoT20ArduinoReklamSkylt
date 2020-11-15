@@ -8,12 +8,10 @@
 #include <LiquidCrystal.h>
 #include <TimeLib.h>
 
-
-
+extern messageStruct (*messagePtr);
 extern LiquidCrystal lcd;
 extern enum TEXT_ATTRIBUTES activeAttr;
 extern enum TEXT_ATTRIBUTES doEvent;
-extern char text[50];
 extern time_t t;
 extern bool blinkState;
 

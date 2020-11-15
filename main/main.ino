@@ -1,6 +1,9 @@
 #define NUMBER_OF_CUSTOMERS 6
 
 #include <Arduino.h>
+#include <LiquidCrystal.h>
+#include <TimeLib.h>
+
 #include "timer.h"
 #include "customer.h"
 #include "display.h"
@@ -15,14 +18,15 @@
 
 LiquidCrystal lcd(lcdRSpin, lcdENpin, lcdD4pin, lcdD5pin, lcdD6pin, lcdD7pin);
 
+int lastCustomerIndex ;
 bool newCustomer = 1;
 bool blinkState = 1;
 enum TEXT_ATTRIBUTES activeAttr;
 enum TEXT_ATTRIBUTES doEvent;
-char text[50];
 time_t t;
 
 customerStruct customers[NUMBER_OF_CUSTOMERS];
+messageStruct (*messagePtr);
 
 void setup()
 {
@@ -37,7 +41,7 @@ void setup()
   populateCustomerStruct(customers, NUMBER_OF_CUSTOMERS);
 
 }
-int lastCustomerIndex ;
+
 void loop()
 {
   int customerIndex;

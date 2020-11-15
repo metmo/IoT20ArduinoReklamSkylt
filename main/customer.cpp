@@ -48,7 +48,7 @@ void populateCustomerStruct(customerStruct customers[], int numberOfCustomers) {
 
   strcpy_P(message[0].text, (PGM_P)pgm_read_word(&(textData[9])));
   message[0].textAttributes = BLINK_ATTR;
-  customers[4] = addCustomer(SWITCH_BITMAP, 1, 1000, message);
+  customers[4] = addCustomer(SWITCH_BITMAP, 1, 20000, message);
 
   strcpy_P(message[0].text, (PGM_P)pgm_read_word(&(textData[10])));
   message[0].textAttributes = FLARE_ATTR;

@@ -69,7 +69,8 @@ void addChars() {
   }
 }
 
-void lcdPrint(const char message[]) {
+void lcdPrint(char message[]) {
+    Serial.println(message);
   for (int i = 0; i < 40; i++) {
 
     switch (message[i]) {

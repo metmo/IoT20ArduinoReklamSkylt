@@ -9,6 +9,6 @@
 extern LiquidCrystal lcd;
 
 void addChars();
-void lcdPrint(const char message[]);
+void lcdPrint(char message[]);
 
 #endif
