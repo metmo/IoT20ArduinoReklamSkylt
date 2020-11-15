@@ -1,17 +1,4 @@
-#include <Arduino.h>
-#include <TimeLib.h>
-#include "customer.h"
 #include "display.h"
-#include "timer.h"
-#include <LiquidCrystal.h>
-#include "lcd.h"
-
-extern LiquidCrystal lcd;
-extern enum TEXT_ATTRIBUTES activeAttr;
-extern enum TEXT_ATTRIBUTES doEvent;
-extern char text[50];
-extern time_t t;
-extern bool blinkState;
 
 void eventCheck() {
   switch (doEvent) {

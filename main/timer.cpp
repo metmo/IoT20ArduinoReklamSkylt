@@ -1,16 +1,9 @@
-#include <Arduino.h>
-#include <TimeLib.h>
-#include "customer.h"
-#include "display.h"
 #include "timer.h"
-#include "lcd.h"
 
 int timer0_lastMillis = 0;
 int timer0_lastMillis2 = 0;
 int timer1_counter;
 int counter;
-extern time_t t;
-extern bool blinkState;
 
 void setupTimers() {
 

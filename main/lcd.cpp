@@ -1,11 +1,4 @@
-#include <Arduino.h>
-#include "customer.h"
-#include "display.h"
 #include "lcd.h"
-#include <avr/pgmspace.h>
-#include <LiquidCrystal.h>
-
-extern LiquidCrystal lcd;
 
 void addChars() {
 

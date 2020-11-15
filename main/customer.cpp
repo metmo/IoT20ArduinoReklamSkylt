@@ -1,15 +1,8 @@
-#include <Arduino.h>
 #include "customer.h"
-#include "display.h"
-#include <avr/pgmspace.h>
-#include <LiquidCrystal.h>
-#include "lcd.h"
-
 
 customerStruct addCustomer(SWITCH_METHOD switchMethod, short numberOfMessages, unsigned int customerCost, messageStruct messages[]) {
 
   customerStruct customer;
-
   customer.customerCost = customerCost;
   customer.numberOfMessages = numberOfMessages;
   customer.switchMethod = switchMethod;
@@ -23,7 +16,6 @@ customerStruct addCustomer(SWITCH_METHOD switchMethod, short numberOfMessages, u
 
 
 void populateCustomerStruct(customerStruct customers[], int numberOfCustomers) {
-
 
   messageStruct message[3];
 
@@ -81,5 +73,4 @@ int chooseCustomer(customerStruct customers[], int numberOfCustomers) {
     }
   }
   return 0;
-
 }

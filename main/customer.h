@@ -1,6 +1,8 @@
-
 #ifndef customerheader
 #define customerheader
+
+#include <Arduino.h>
+#include <avr/pgmspace.h>
 
 #define MESSAGE_LENGTH 40
 #define MAX_NUMBER_OF_MESSAGES 3
