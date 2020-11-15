@@ -30,7 +30,6 @@ void eventCheck() {
     case BLINK_ATTR: {
         if (blinkState) {
           lcd.clear();
-          Serial.println((*messagePtr).text);
           lcdPrint((*messagePtr).text);
         } else {
           lcd.clear();
@@ -61,22 +60,20 @@ void showText(messageStruct *message) {
   activeAttr = message->textAttributes;
   //doEvent = message->textAttributes;
   lcdPrint((*messagePtr).text);
+  Serial.println((*messagePtr).text);
 }
 
 
 void displayCustomer(customerStruct customers[], int customerIndex) {
   Serial.print("\nCustomer id: ");
-  Serial.print(customerIndex);
+  Serial.println(customerIndex);
 
   switch (customers[customerIndex].switchMethod) {
 
     case SWITCH_RANDOM: {
 
         int rnd = random(0, (customers[customerIndex].numberOfMessages));
-
-
         showText(&customers[customerIndex].messages[rnd]);
-        Serial.print(customers[customerIndex].messages[rnd].text);
         break;
       }
 
@@ -84,10 +81,8 @@ void displayCustomer(customerStruct customers[], int customerIndex) {
 
         if (minute(t) % 2 == 0) {
           showText(&customers[customerIndex].messages[0]);
-          Serial.print(customers[customerIndex].messages[0].text);
         } else {
           showText(&customers[customerIndex].messages[1]);
-          Serial.print(customers[customerIndex].messages[1].text);
         }
         break;
       }
@@ -95,18 +90,15 @@ void displayCustomer(customerStruct customers[], int customerIndex) {
 
         if (hour(t) >= 17 | hour(t) < 6) {
           showText(&customers[customerIndex].messages[0]);
-          Serial.println(customers[customerIndex].messages[0].text);
         }
         else if (hour(t) > 17 | hour(t) >= 6) {
 
           showText(&customers[customerIndex].messages[1]);
-          Serial.println(customers[customerIndex].messages[1].text);
         }
         break;
       }
     case SWITCH_BITMAP: {
         showText(&customers[customerIndex].messages[0]);
-        Serial.println(customers[customerIndex].messages[0].text);
         break;
       }
   }
