@@ -1,12 +1,12 @@
 #define NUMBER_OF_CUSTOMERS 6
 
 #include <Arduino.h>
-#include <string.h>
+//#include <string.h>
 #include <TimeLib.h>
 #include "customer.h"
 #include "display.h"
 #include "timer.h"
-#include <avr/pgmspace.h>
+//#include <avr/pgmspace.h>
 #include <LiquidCrystal.h>
 #include "lcd.h"
 
