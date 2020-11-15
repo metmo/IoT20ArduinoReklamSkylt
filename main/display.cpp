@@ -37,7 +37,7 @@ void eventCheck() {
     case FLARE_ATTR: {
 
       // Do Flare event, set global variables etc
-      // Switch even to Scroll
+      // Switch even to Scroll or other.
       activeAttr = SCROLL_ATTR;
       doEvent = SCROLL_ATTR;
       
