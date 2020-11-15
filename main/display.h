@@ -9,14 +9,12 @@
 #include <TimeLib.h>
 
 extern messageStruct (*messagePtr);
+extern customerStruct customers[6];
 extern LiquidCrystal lcd;
-extern enum TEXT_ATTRIBUTES activeAttr;
-extern enum TEXT_ATTRIBUTES doEvent;
 extern time_t t;
-extern bool blinkState;
 
 void eventCheck();
-void showText(messageStruct message);
+void showText(messageStruct *message);
 void displayCustomer(customerStruct *customer, int customerIndex);
 
 #endif

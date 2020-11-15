@@ -70,7 +70,7 @@ void addChars() {
 }
 
 void lcdPrint(char message[]) {
-    Serial.println(message);
+  lcd.clear();
   for (int i = 0; i < 40; i++) {
 
     switch (message[i]) {

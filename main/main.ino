@@ -18,11 +18,6 @@
 
 LiquidCrystal lcd(lcdRSpin, lcdENpin, lcdD4pin, lcdD5pin, lcdD6pin, lcdD7pin);
 
-int lastCustomerIndex ;
-bool newCustomer = 1;
-bool blinkState = 1;
-enum TEXT_ATTRIBUTES activeAttr;
-enum TEXT_ATTRIBUTES doEvent;
 time_t t;
 
 customerStruct customers[NUMBER_OF_CUSTOMERS];
@@ -44,14 +39,5 @@ void setup()
 
 void loop()
 {
-  int customerIndex;
-  if (newCustomer) {
-    do {
-      customerIndex = chooseCustomer(customers, NUMBER_OF_CUSTOMERS);
-    } while (lastCustomerIndex == customerIndex);
-    lastCustomerIndex = customerIndex;
-    displayCustomer(customers, customerIndex);
-    newCustomer = 0;
-  }
   eventCheck();
 }

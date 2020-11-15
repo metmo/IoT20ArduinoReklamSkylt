@@ -10,7 +10,7 @@ extern time_t t;
 extern bool blinkState;
 extern bool newCustomer;
 extern enum TEXT_ATTRIBUTES activeAttr;
-extern enum TEXT_ATTRIBUTES doEvent;
+extern messageStruct (*messagePtr);
 
 void setupTimers();
 ISR(TIMER0_COMPA_vect);

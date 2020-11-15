@@ -28,12 +28,12 @@ ISR(TIMER0_COMPA_vect) {  // Timer0 Compare
         int currentMillisScroll = millis();
         if (currentMillisScroll - timer0_lastMillis >= 300) {
           timer0_lastMillis = currentMillisScroll;
-          doEvent = SCROLL_ATTR;
+          (*messagePtr).textAttributes = SCROLL_ATTR;
         }
         break;
       }
     case STATIC_ATTR: {
-        doEvent = STATIC_ATTR;
+        (*messagePtr).textAttributes = STATIC_ATTR;
         break;
       }
     case BLINK_ATTR: {
@@ -41,13 +41,13 @@ ISR(TIMER0_COMPA_vect) {  // Timer0 Compare
         if (currentMillisBlink - timer0_lastMillis2 >= 600) {
           timer0_lastMillis2 = currentMillisBlink;
           blinkState = !blinkState;
-          doEvent = BLINK_ATTR;
+          (*messagePtr).textAttributes = BLINK_ATTR;
         }
         break;
       }
 
     case FLARE_ATTR: {
-        doEvent = FLARE_ATTR;
+        (*messagePtr).textAttributes = FLARE_ATTR;
         break;
       }
     default: {
