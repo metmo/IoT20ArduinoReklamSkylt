@@ -1,62 +1,50 @@
+#include <stdlib.h>
 #include <Arduino.h>
+#include <string.h>
 #include <TimeLib.h>
 #include "customer.h"
 #include "display.h"
 #include "timer.h"
+#include <avr/pgmspace.h>
 #include <LiquidCrystal.h>
 #include "lcd.h"
 
 extern LiquidCrystal lcd;
 extern enum TEXT_ATTRIBUTES activeAttr;
-extern enum TEXT_ATTRIBUTES doEvent;
 extern char text[50];
 extern time_t t;
-extern bool blinkState;
-
-void eventCheck() {
-  switch (doEvent) {
-    case SCROLL_ATTR: {
-        lcd.scrollDisplayRight();
-        doEvent = NO_ATTR;
-        break;
-      }
-    case STATIC_ATTR: {
-        doEvent = NO_ATTR;
-        break;
-      }
-    case BLINK_ATTR: {
-        if (blinkState) {
-          lcd.clear();
-          lcdPrint(text);
-        } else {
-          lcd.clear();
-        }
-        doEvent = NO_ATTR;
-        break;
-      }
-    case FLARE_ATTR: {
-
-      // Do Flare event, set global variables etc
-      // Switch even to Scroll
-      activeAttr = SCROLL_ATTR;
-      doEvent = SCROLL_ATTR;
-      
-    //    doEvent = NO_ATTR;
-        break;
-
-    }  case NO_ATTR: {
-        break;
-      }
-  }
-}
 
 
 void showText(messageStruct message) {
+
   strcpy(text, message.text);
-  lcd.clear();
-  activeAttr = message.textAttributes;
-  doEvent = message.textAttributes;
-  lcdPrint(text);
+
+  switch (message.textAttributes) {
+    case SCROLL_ATTR: {
+        activeAttr = SCROLL_ATTR;
+        lcd.clear();
+        lcdPrint(text);
+        break;
+      }
+    case STATIC_ATTR: {
+        activeAttr = STATIC_ATTR;
+        lcd.clear();
+        lcdPrint(text);
+        break;
+      }
+    case BLINK_ATTR: {
+        activeAttr = BLINK_ATTR;
+        lcd.clear();
+        lcdPrint(text);
+        break;
+      }
+    case FLARE_ATTR: {
+        activeAttr = FLARE_ATTR;
+        lcd.clear();
+        lcdPrint(text);
+        break;
+      }
+  }
 }
 
 
@@ -67,9 +55,9 @@ void displayCustomer(customerStruct customers[], int customerIndex) {
   switch (customers[customerIndex].switchMethod) {
 
     case SWITCH_RANDOM: {
-
-        int rnd = random(0, (customers[customerIndex].numberOfMessages));
-
+        Serial.print("\nRANDOM ");
+        int rnd = random(0, (customers[customerIndex].numberOfMessages + 1));
+        Serial.print(rnd);
 
         showText(customers[customerIndex].messages[rnd]);
         Serial.print(customers[customerIndex].messages[rnd].text);
@@ -77,24 +65,26 @@ void displayCustomer(customerStruct customers[], int customerIndex) {
       }
 
     case SWITCH_ODD_EVEN_MINUTES: {
-
+        Serial.print("\nODD/EVEN:");
         if (minute(t) % 2 == 0) {
           showText(customers[customerIndex].messages[0]);
+
           Serial.print(customers[customerIndex].messages[0].text);
         } else {
           showText(customers[customerIndex].messages[1]);
+
           Serial.print(customers[customerIndex].messages[1].text);
         }
         break;
       }
     case SWITCH_DAY_NIGHT: {
-
         if (hour(t) >= 17 | hour(t) < 6) {
+
           showText(customers[customerIndex].messages[0]);
           Serial.println(customers[customerIndex].messages[0].text);
         }
         else if (hour(t) > 17 | hour(t) >= 6) {
-
+          //   Serial.print("\nDAY:");
           showText(customers[customerIndex].messages[1]);
           Serial.println(customers[customerIndex].messages[1].text);
         }

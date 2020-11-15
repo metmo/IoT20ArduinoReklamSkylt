@@ -1,4 +1,3 @@
-
 #ifndef customerheader
 #define customerheader
 
@@ -12,7 +11,7 @@
   const char line4[] PROGMEM = "Skynda innan\nMårten ätit allt";
   const char line5[] PROGMEM = "Låt Petter\nBygga åt dig";
   const char line6[] PROGMEM = "Bygga svart?\nRing Petter";
-  const char line7[] PROGMEM = "Mysterier? Ring\nLångben";
+  const char line7[] PROGMEM = "Mysterier? Ring Långben";
   const char line8[] PROGMEM = "Långben fixar\nbiffen";
   const char line9[] PROGMEM = "IOT-Reklambyrå";
   const char line10[] PROGMEM = "T-Röd - för dig\nsom tänkt klart";
@@ -38,7 +37,6 @@
 enum SWITCH_METHOD {
   SWITCH_RANDOM,
   SWITCH_ODD_EVEN_MINUTES,
-
   SWITCH_DAY_NIGHT,
   SWITCH_BITMAP
 };
@@ -49,7 +47,6 @@ enum TEXT_ATTRIBUTES {
   BLINK_ATTR,
   FLARE_ATTR,
   NO_ATTR
-
 };
 
 struct messageStruct {
@@ -61,6 +58,7 @@ struct customerStruct {
   unsigned long int customerCost;
   short numberOfMessages = MAX_NUMBER_OF_MESSAGES;
   messageStruct messages[MAX_NUMBER_OF_MESSAGES];
+
 
 };
 

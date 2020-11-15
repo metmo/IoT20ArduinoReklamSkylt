@@ -1,6 +1,4 @@
-#include <stdlib.h>
 #include <Arduino.h>
-#include <stdarg.h>
 #include "customer.h"
 #include "display.h"
 #include "lcd.h"
@@ -11,84 +9,74 @@ extern LiquidCrystal lcd;
 
 void addChars() {
 
-  byte a1[8] = {//å
-    B00100,
-    B00000,
-    B01110,
-    B00001,
-    B01111,
-    B10001,
-    B01111,
-    B00000
+  byte character[8][8] = {
+    { B00100,
+      B00000,
+      B01110,
+      B00001,
+      B01111,
+      B10001,
+      B01111,
+      B00000
+    },
+
+    { B00100,
+      B00000,
+      B01110,
+      B10001,
+      B10001,
+      B11111,
+      B10001,
+      B10001
+    },
+
+    { B01010,
+      B00000,
+      B01110,
+      B00001,
+      B01111,
+      B10001,
+      B01111,
+      B00000
+    },
+
+    { B01010,
+      B00000,
+      B01110,
+      B10001,
+      B10001,
+      B11111,
+      B10001,
+      B10001
+    },
+
+    { B01010,
+      B00000,
+      B01110,
+      B10001,
+      B10001,
+      B10001,
+      B01110,
+      B00000
+    },
+
+    { B01010,
+      B00000,
+      B01110,
+      B10001,
+      B10001,
+      B10001,
+      B10001,
+      B01110
+    }
   };
 
-  byte a2[8] = {//Å
-    B00100,
-    B00000,
-    B01110,
-    B10001,
-    B10001,
-    B11111,
-    B10001,
-    B10001
-  };
-
-  byte a3[8] = {//ä
-    B01010,
-    B00000,
-    B01110,
-    B00001,
-    B01111,
-    B10001,
-    B01111,
-    B00000
-  };
-
-  byte a4[8] = {//Ä
-    B01010,
-    B00000,
-    B01110,
-    B10001,
-    B10001,
-    B11111,
-    B10001,
-    B10001
-  };
-
-  byte a5[8] = {//ö
-    B01010,
-    B00000,
-    B01110,
-    B10001,
-    B10001,
-    B10001,
-    B01110,
-    B00000
-  };
-  byte a6[8] = {//Ö
-    B01010,
-    B00000,
-    B01110,
-    B10001,
-    B10001,
-    B10001,
-    B10001,
-    B01110
-  };
-
-  lcd.createChar(byte(0), a1);
-  lcd.createChar(byte(1), a2);
-  lcd.createChar(byte(2), a3);
-  lcd.createChar(byte(3), a4);
-  lcd.createChar(byte(4), a5);
-  lcd.createChar(byte(5), a6);
+  for (int i = 0; i < 6; i++) {
+    lcd.createChar(byte(i), character[i]);
+  }
 }
 
-//test
-
 void lcdPrint(const char message[]) {
-  
-lcd.setCursor(0,0);
   for (int i = 0; i < 40; i++) {
 
     switch (message[i]) {
@@ -123,11 +111,10 @@ lcd.setCursor(0,0);
       case '\xc3': {
           break;
         }
-        case '\n':{
-          lcd.setCursor(0,1);
+      case '\n': {
+          lcd.setCursor(0, 1);
           break;
         }
-
       default: {
           lcd.write(char(message[i]));
           break;

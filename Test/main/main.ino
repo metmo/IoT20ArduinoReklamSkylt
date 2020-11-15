@@ -1,5 +1,9 @@
+
+
+
 #define NUMBER_OF_CUSTOMERS 6
 
+#include <stdlib.h>
 #include <Arduino.h>
 #include <string.h>
 #include <TimeLib.h>
@@ -24,6 +28,7 @@ bool blinkState = 1;
 enum TEXT_ATTRIBUTES activeAttr;
 enum TEXT_ATTRIBUTES doEvent;
 char text[50];
+
 time_t t;
 
 customerStruct customers[NUMBER_OF_CUSTOMERS];
@@ -36,7 +41,15 @@ void setup()
 
   lcd.begin(16, 2);
   addChars();
-  setupTimers();
+  setupTimer();
+
+
+
+  lcd.setCursor(2, 0);
+ // lcd.print("MVA"); // Marcus Vincent Andreas Commercial
+  lcd.setCursor(2, 1);
+  lcd.print("Commercial");
+  delay(1000);
 
   populateCustomerStruct(customers, NUMBER_OF_CUSTOMERS);
 
@@ -53,5 +66,35 @@ void loop()
     displayCustomer(customers, customerIndex);
     newCustomer = 0;
   }
-  eventCheck();
+
+  switch (doEvent) {
+    case SCROLL_ATTR: {
+        lcd.scrollDisplayRight();
+        doEvent = NO_ATTR;
+        break;
+      }
+    case STATIC_ATTR: {
+        doEvent = NO_ATTR;
+        break;
+      }
+    case BLINK_ATTR: {
+        if (blinkState) {
+          Serial.println(text);
+          lcdPrint(text);
+          blinkState = 0;
+        } else {
+          lcd.clear();
+        }
+        doEvent = NO_ATTR;
+        break;
+      }
+    case FLARE_ATTR: {
+        doEvent = NO_ATTR;
+
+        break;
+    }  case NO_ATTR: {
+        doEvent = NO_ATTR;
+        break;
+      }
+  }
 }
